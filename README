@@ -1,0 +1,58 @@
+NAME
+    Time::Traveler - Allows "retroactive" changes of variables aka values
+    are not evaluated immediately.
+
+DESCRIPTION
+    This module allows you to use overloaded values to delay when a value's
+    value is actually computed. I wrote this so I could return a value from
+    one of my functions to some user code and later change my mind about the
+    value I should have returned.
+
+SYNOPSIS
+     $val = "Sally is a goober";
+     $_ = Time::Traveler->new( $val );
+     $val = "I will not insult Sally.\n" x 100;
+     print; # Shows the updated $val, not the original $val.
+
+Methods
+  Time::Traveler->new( $val )
+    You are expected to pass in a single variable to the method.
+    Time::Traveler will take a reference to this value so that if you change
+    its value later, Time::Traveler will use that new value instead of your
+    original value.
+
+    The *only* correct way to use this is to pass in a variable. You may
+    pass in constants or the result of expressions but they can't be altered
+    later because you aren't going to be sharing a reference with
+    Time::Traveler.
+
+    Ok.
+
+     $elt1 = Time::Traveler->new( $h->{ 'foo' } );
+     $elt2 = Time::Traveler->new( $ary[ 10000 ] );
+     $elt3 = Time::Traveler->new( $var );
+
+    Not ok.
+
+     $elt4 = Time::Traveler->new( 42 );
+     $elt5 = Time::Traveler->new( foo() );
+
+AUTHOR
+    Joshua ben Jore, "<jjore@cpan.org>"
+
+BUGS
+    Please report any bugs or feature requests to
+    "bug-time-traveler@rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Time-Traveler>. I will
+    be notified, and then you'll automatically be notified of progress on
+    your bug as I make changes.
+
+ACKNOWLEDGEMENTS
+    Corion of perlmonks.org
+
+COPYRIGHT & LICENSE
+    Copyright 2005 Joshua ben Jore, All Rights Reserved.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

@@ -1,0 +1,8 @@
+--- #YAML:1.0
+name: Time-Traveler
+version: 0.01
+author:
+  - Joshua ben Jore <jjore@cpan.org>
+abstract: Allows "retroactive" changes of variables aka values are not evaluated immediately.
+license: perl
+generated_by: Module::Build version 0.2609, without YAML.pm
